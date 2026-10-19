@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bad Motherfucker</title>
+  <meta name="description" content="Samuel L. Jackson said it 171 times across 27 films. Say it into your mic and see if you can match him.">
+  <meta name="theme-color" content="#f3f0ea">
+  <link rel="preload" href="fonts/rye.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Bad Motherfucker</h1>
+      <p>Samuel L. Jackson said it 171 times across 27 films. Your turn.</p>
+    </header>
+
+    <section class="counter" aria-live="polite">
+      <span class="count" id="count">0</span>
+      <span class="goal">/171</span>
+    </section>
+
+    <div class="bar" id="bar" aria-hidden="true"><div class="fill" id="fill"></div></div>
+    <p class="next" id="next"></p>
+
+    <button class="mic" id="mic" type="button" aria-pressed="false">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="mic-label">Tap and say it</span>
+    </button>
+    <p class="heard" id="heard" aria-live="polite"></p>
+
+    <h2 class="label">Film by film</h2>
+    <ol class="films" id="slots"></ol>
+
+    <footer>
+      <p>Counts from the 2014 HuffPost supercut by Ben Craw &amp; Oliver Noble. Speech is recognised by your browser; in Chrome, audio goes to Google.</p>
+      <button class="reset" id="reset" type="button">Reset</button>
+    </footer>
+  </main>
+
+  <div class="flash" id="flash" role="status" aria-live="assertive"></div>
+
+  <div class="finale" id="finale" hidden>
+    <p>You are a<br>bad<br>motherfucker.</p>
+    <button id="finale-x" type="button">Keep going</button>
+  </div>
+
+  <script src="films.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
