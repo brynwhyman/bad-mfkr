@@ -31,7 +31,7 @@ main {
 
 header h1 {
   margin: 0;
-  font: 400 20px/1.2 var(--rye);
+  font: 400 clamp(22px, 6vw, 28px)/1.15 var(--rye);
   text-transform: uppercase;
 }
 header p {
@@ -47,14 +47,18 @@ header p {
   margin: 48px 0 0;
 }
 .count {
-  font: 400 clamp(120px, 38vw, 200px)/.85 var(--rye);
+  font-size: clamp(112px, 34vw, 180px);
+  font-weight: 700;
+  line-height: .85;
+  letter-spacing: -.05em;
   font-variant-numeric: tabular-nums;
   transition: color .3s;
 }
 .count.bump { color: var(--red); transition: none; }
 .goal {
-  margin-left: 6px;
-  font: 400 clamp(22px, 6vw, 30px) var(--rye);
+  margin-left: 10px;
+  font-size: clamp(20px, 5.5vw, 28px);
+  font-weight: 600;
   color: var(--mute);
 }
 
@@ -124,6 +128,8 @@ header p {
 
 /* ---------- films ---------- */
 
+.label[hidden],
+.films[hidden] { display: none; }
 .label {
   margin: 56px 0 10px;
   font-size: 12px;
@@ -133,6 +139,8 @@ header p {
   color: var(--mute);
 }
 .films {
+  display: flex;
+  flex-direction: column-reverse;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -152,9 +160,10 @@ header p {
 .films .t { font-weight: 500; }
 .films .note { display: block; margin-top: 2px; font-size: 13px; color: var(--mute); }
 .films .n { font-weight: 600; font-variant-numeric: tabular-nums; }
-.films li.got { color: var(--ink); }
+.films li:not(.got) { display: none; }
+.films li.got { color: var(--ink); animation: in .4s ease-out; }
 .films li.got .n { color: var(--red); }
-.films li.target { color: var(--ink); }
+@keyframes in { from { opacity: 0; transform: translateY(-6px); } }
 
 footer {
   display: flex;

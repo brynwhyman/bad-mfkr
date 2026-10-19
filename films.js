@@ -1,6 +1,6 @@
 // Every "motherfucker" Samuel L. Jackson said on film, per the 2014
 // HuffPost supercut by Ben Craw and Oliver Noble. 27 films, 171 total.
-// In release order. `note` is shown on the card when there's a caveat.
+// In release order. `note` is shown under the title when there's a caveat.
 
 window.FILMS = [
   { title: "School Daze", year: 1988, count: 1 },

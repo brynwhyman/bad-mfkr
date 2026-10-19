@@ -10,7 +10,7 @@
   const $ = (id) => document.getElementById(id);
   const countEl = $("count"), fillEl = $("fill"), barEl = $("bar"), nextEl = $("next");
   const micBtn = $("mic"), micLabel = $("mic-label"), heardEl = $("heard");
-  const slotsEl = $("slots"), flashEl = $("flash"), finaleEl = $("finale");
+  const slotsEl = $("slots"), labelEl = $("label"), flashEl = $("flash"), finaleEl = $("finale");
 
   let count = load();
   let finaleShown = count >= GOAL;
@@ -66,13 +66,17 @@
     fillEl.style.width = Math.min(100, (count / GOAL) * 100) + "%";
     for (const t of barEl.querySelectorAll(".tick")) t.classList.toggle("got", count >= +t.dataset.mark);
 
+    // Films stay hidden until matched, so the list builds up as you go.
     const next = marks.findIndex((m) => count < m);
     const lis = slotsEl.children;
+    let matched = 0;
     for (let i = 0; i < films.length; i++) {
       const got = count >= marks[i];
       lis[i].classList.toggle("got", got);
-      lis[i].classList.toggle("target", i === next);
+      matched += got;
     }
+    labelEl.hidden = slotsEl.hidden = !matched;
+    labelEl.textContent = `Films matched \u00b7 ${matched} of ${films.length}`;
 
     if (next === -1) {
       nextEl.innerHTML = count > GOAL
@@ -80,7 +84,7 @@
         : `Every film matched.`;
     } else {
       const need = marks[next] - count;
-      nextEl.innerHTML = `<b>${need}</b> more to match ${films[next].title}.`;
+      nextEl.innerHTML = `<b>${need}</b> more to the next film.`;
     }
 
     if (prev === undefined) return;
